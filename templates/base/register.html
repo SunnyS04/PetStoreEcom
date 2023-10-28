@@ -1,0 +1,136 @@
+{% include 'base/header.html' %}
+    {% block content %}
+    <form method="POST" class="login-form">
+    {% csrf_token %}
+        <div class="row">   
+            <div class="col-md-12">
+                {% if form.errors %} <!--if condition-->
+                    {% for feild in form %} <!--for loop-->
+                        {% for error in feild.errors %} <!--for loop-->
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% for error in form.non_feild_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ errors|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}                    
+            </div>
+            
+            <div class="col-ml-6">
+                <div class="form-group position-relative">
+                    <label for="">First Name<span class="text-danger">*</span></label>
+                    {{form.first_name}} <!--first_name is feild name which has been created in model.py petsapp-->
+                </div>
+            </div>
+
+            {% if form.first_name.errors %} <!--if error occurr-->
+                {% for error in first_name.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col-ml-6">
+                <div class="form-group position-relative">
+                    <label for="">Last Name<span class="text-danger">*</span></label>
+                    {{form.last_name}} 
+                </div>
+            </div>
+
+            {% if form.last_name.errors %} <!--if error occurr-->
+                {% for error in last_name.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col-ml-6">
+                <div class="form-group position-relative">
+                    <label for="">Email<span class="text-danger">*</span></label>
+                    {{form.email}} 
+                </div>
+            </div>
+
+            {% if form.email.errors %} <!--if error occurr-->
+                {% for error in email.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col-ml-6">
+                <div class="form-group position-relative">
+                    <label for="">Username<span class="text-danger">*</span></label>
+                    {{form.username}} 
+                </div>
+            </div>
+
+            {% if form.username.errors %} <!--if error occurr-->
+                {% for error in username.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col-ml-6">
+                <div class="form-group position-relative">
+                    <label for="">Password<span class="text-danger">*</span></label>
+                    {{form.password1}} 
+                </div>
+            </div>
+
+            {% if form.password1.errors %} <!--if error occurr-->
+                {% for error in password1.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col-ml-6">
+                <div class="form-group position-relative">
+                    <label for="">Confirm Password<span class="text-danger">*</span></label>
+                    {{form.password2}} 
+                </div>
+            </div>
+
+            {% if form.password2.errors %} <!--if error occurr-->
+                {% for error in password2.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col-ml-6">
+                <div class="form-group position-relative">
+                    {{form.check}}
+                    <label for="">I Accept<a href="" class="text-primary">Terms & Conditions</a></label>
+                </div>
+            </div>
+
+            {% if form.check.errors %}
+                {% for error in check.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="col-md-12">
+            <button class="btn btn-primary w-100" type="submit">Register</button>
+        </div>
+    </form>
+
+    {% endblock %}
+{% include 'base/footer.html' %}
